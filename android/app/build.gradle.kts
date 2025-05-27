@@ -51,8 +51,8 @@ android {
     // Configuración para evitar conflictos de arquitectura
     splits {
         abi {
-        enable false
-        }
+        isEnable = false
+      }
     }
 
 }
