@@ -202,6 +202,7 @@ class _SexoPageState extends State<SexoPage> {
   }
 
   Future<void> _fetchSexoData() async {
+    print('Iniciando carga de datos de Sexo...');
     setState(() {
       _isLoading = true; // Inicia la carga
     });
@@ -211,6 +212,7 @@ class _SexoPageState extends State<SexoPage> {
           'https://educaysoft.org/whatsapp6a/app/controllers/SexoController.php?action=api',
         ),
       );
+
       if (response.statusCode == 200) {
         final List<dynamic> data = json.decode(response.body);
         setState(() {
