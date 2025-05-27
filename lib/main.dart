@@ -208,7 +208,7 @@ class _SexoPageState extends State<SexoPage> {
     try {
       final response = await http.get(
         Uri.parse(
-          'https://educaysoft.org/apple6b/app/controllers/SexoController.php?action=api',
+          'https://educaysoft.org/whatsapp6a/app/controllers/SexoController.php?action=api',
         ),
       );
       if (response.statusCode == 200) {
