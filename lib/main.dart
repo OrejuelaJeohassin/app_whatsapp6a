@@ -202,7 +202,6 @@ class _SexoPageState extends State<SexoPage> {
   }
 
   Future<void> _fetchSexoData() async {
-    print('Iniciando carga de datos de Sexo...');
     setState(() {
       _isLoading = true; // Inicia la carga
     });
