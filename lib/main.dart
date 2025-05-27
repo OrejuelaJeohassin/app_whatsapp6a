@@ -604,7 +604,7 @@ class _DireccionPageState extends State<DireccionPage> {
       // Replace with your actual API endpoint for Direccion
       final response = await http.get(
         Uri.parse(
-          'https://educaysoft.org/apple6b/app/controllers/DireccionController.php?action=api',
+          'https://educaysoft.org/whatsapp6a/app/controllers/DireccionController.php?action=api',
         ),
       );
       if (response.statusCode == 200) {
