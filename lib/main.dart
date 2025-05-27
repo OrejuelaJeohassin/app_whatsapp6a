@@ -467,7 +467,7 @@ class _EstadocivilPageState extends State<EstadocivilPage> {
     try {
       final response = await http.get(
         Uri.parse(
-          'https://educaysoft.org/apple6b/app/controllers/EstadocivilController.php?action=api',
+          'https://educaysoft.org/whatsapp6a/app/controllers/EstadocivilController.php?action=api',
         ),
       );
       if (response.statusCode == 200) {
