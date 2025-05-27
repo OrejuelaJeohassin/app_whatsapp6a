@@ -1,13 +1,12 @@
 plugins {
     id("com.android.application")
     id("kotlin-android")
-    // The Flutter Gradle Plugin must be applied after the Android and Kotlin Gradle plugins.
     id("dev.flutter.flutter-gradle-plugin")
 }
 
 android {
     namespace = "com.example.app_whatsapp6a"
-    compileSdk = flutter.compileSdkVersion
+    compileSdk = flutter.compileSdkVersion.toInt()  // Asegúrate de convertirlo a Int
     ndkVersion = flutter.ndkVersion
 
     compileOptions {
@@ -20,25 +19,50 @@ android {
     }
 
     defaultConfig {
-        // TODO: Specify your own unique Application ID (https://developer.android.com/studio/build/application-id.html).
         applicationId = "com.example.app_whatsapp6a"
-        // You can update the following values to match your application needs.
-        // For more information, see: https://flutter.dev/to/review-gradle-config.
-        minSdk = flutter.minSdkVersion
-        targetSdk = flutter.targetSdkVersion
-        versionCode = flutter.versionCode
-        versionName = flutter.versionName
+        minSdk = flutter.minSdkVersion.toInt()  // Conversión a Int
+        targetSdk = flutter.targetSdkVersion.toInt()  // Conversión a Int
+        versionCode = flutter.versionCode?.toInt() ?: 1  // Manejo de nulo
+        versionName = flutter.versionName ?: "1.0.0"  // Manejo de nulo
+        
+        // Configuración para multidex si es necesario
+        multiDexEnabled = true
     }
 
     buildTypes {
         release {
-            // TODO: Add your own signing config for the release build.
-            // Signing with the debug keys for now, so `flutter run --release` works.
-            signingConfig = signingConfigs.getByName("debug")
+            // Configuración de ofuscación y optimización
+            isMinifyEnabled = true
+            isShrinkResources = true
+            proguardFiles(
+                getDefaultProguardFile("proguard-android-optimize.txt"),
+                "proguard-rules.pro"
+            )
+            
+            // Configuración de firma (reemplaza con tus credenciales)
+            signingConfig = signingConfigs.getByName("debug")  // Temporal para desarrollo
+            // signingConfig = signingConfigs.create("release") // Para producción
+        }
+        debug {
+            isDebuggable = true
+        }
+    }
+
+    // Configuración para evitar conflictos de arquitectura
+    splits {
+        abi {
+            isEnable = true
+            reset()
+            include("armeabi-v7a", "arm64-v8a", "x86_64")
+            isUniversalApk = false
         }
     }
 }
 
 flutter {
     source = "../.."
+}
+
+dependencies {
+    implementation("androidx.multidex:multidex:2.0.1")  // Necesario si usas multidex
 }
